@@ -1,4 +1,4 @@
-const SLICE_COUNT = 10;
+const SLICE_COUNT = 10.03125;
 
 function setup_pScope(pScope){
   pScope.output_mode(ANIMATED_DISK);
@@ -13,7 +13,7 @@ function setup_layers(pScope){
   new PLayer(null, 220);  //lets us draw the whole circle background, ignoring the boundaries
 
   var layer1 = new PLayer(faces);
-  layer1.mode( SWIRL(5) );
+  layer1.mode( SWIRL(1) );
   layer1.set_boundary( 200, 1000 );
 
   var layer2 = new PLayer(squares);
