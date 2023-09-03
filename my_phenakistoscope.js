@@ -22,15 +22,17 @@ function setup_layers(pScope){
   var layer2 = new PLayer(squares);
   layer2.mode( RING );
   layer2.set_boundary( 0, 250 );
+
+  
   
 }
 
+
+
+
 function faces(x, y, animation, pScope){
   
-
-
-  
-  strokeWeight();
+  strokeWeight(10);
   scale(animation.frame*2);
 
   fill(255);
@@ -42,6 +44,9 @@ function faces(x, y, animation, pScope){
  
 
 }
+
+
+
 
 function squares(x, y, animation, pScope){
 
