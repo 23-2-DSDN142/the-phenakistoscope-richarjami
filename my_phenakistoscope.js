@@ -1,4 +1,4 @@
-const SLICE_COUNT = 16;
+const SLICE_COUNT = 12;
 
 function setup_pScope(pScope){
   pScope.output_mode(ANIMATED_DISK);
@@ -6,48 +6,30 @@ function setup_pScope(pScope){
   pScope.draw_layer_boundaries(true);
   pScope.set_direction(CCW);
   pScope.set_slice_count(SLICE_COUNT);
+  pScope.load_image("warning_sign" , "png");
+  pScope.load_image_sequence("shark" , "png", 12);
 }
 
 function setup_layers(pScope){
 
-  stroke(66, 175, 205);
+  stroke(127, 204, 219);
   strokeWeight(0);
-  new PLayer(null, 220);  //lets us draw the whole circle background, ignoring the boundaries
+  new PLayer(null, 127, 204, 219);  //lets us draw the whole circle background, ignoring the boundaries
 
   
-  var layer1 = new PLayer(faces);
-  layer1.mode( SWIRL(1) );
+  var layer1 = new PLayer(shark);
+  layer1.mode( RING );
   layer1.set_boundary( 250, 1000 );
 
   var layer2 = new PLayer(squares);
   layer2.mode( RING );
-  layer2.set_boundary( 0, 250 );
+  layer2.set_boundary( 250, 1000 );
 
-  
+  var layer3 = new PLayer(sign);
+  layer3.mode( RING );
+  layer3.set_boundary( 0, 1250 );
   
 }
-
-
-
-
-function faces(x, y, animation, pScope){
-  
-  strokeWeight(10);
-  scale(animation.frame*2);
-
-  fill(255);
-  //ellipse(0,0,50,50); // draw head
-
-  stroke(255);
-  strokeWeight(3);
-  line(0,0,0,500);
- 
-
-}
-
-
-
-
 function squares(x, y, animation, pScope){
 
   // this is how you set up a background for a specific layer
@@ -55,13 +37,30 @@ function squares(x, y, animation, pScope){
   let backgroundArcStart = 270 - angleOffset;
   let backgroundArcEnd = 270 + angleOffset;
 
-  strokeWeight(0);
-  fill(66, 205, 175)
-  arc(x,y+10,500,500,backgroundArcStart,backgroundArcEnd); // draws "pizza slice" in the background
-  //circle(0,0,600);
-
-
-  fill(255)
-  circle(-10,-100-animation.wave()*135,20,20) // .wave is a cosine wave btw
+  fill(127, 204, 219);
+  circle()
+ 
 
 }
+
+
+function sign(x, y, animation, pScope){
+
+  scale(0.5);
+
+  if (animation.frame = 3){
+  pScope.draw_image("warning_sign",0,0);
+  }
+}
+
+function shark(x, y, animation, pScope){
+  
+  scale(0.28);
+  pScope.draw_image_from_sequence("shark", 0, -2900, animation.frame);
+
+
+}
+
+
+
+
