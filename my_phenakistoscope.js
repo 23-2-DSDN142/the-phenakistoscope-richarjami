@@ -64,7 +64,7 @@ function shark(x, y, animation, pScope){
 function bubbles(x, y, animation, pScope){
   
   fill(255,255,255,100);  
-  circle(0,0-animation.wave()*50,20);
+  circle(0,300+animation.wave()*5,20);
 
 }
 
