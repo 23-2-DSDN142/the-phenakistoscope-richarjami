@@ -17,11 +17,11 @@ function setup_layers(pScope){
   new PLayer(null, "#43BDD9");  //lets us draw the whole circle background, ignoring the boundaries
 
   
-  var layer1 = new PLayer(shark);
+  var layer1 = new PLayer(squares);
   layer1.mode( RING );
   layer1.set_boundary( 250, 1000 );
 
-  var layer2 = new PLayer(squares);
+  var layer2 = new PLayer(shark);
   layer2.mode( RING );
   layer2.set_boundary( 250, 1000 );
 
@@ -43,6 +43,9 @@ function squares(x, y, animation, pScope){
   let backgroundArcStart = 270 - angleOffset;
   let backgroundArcEnd = 270 + angleOffset;
 
+  fill("#43BDD9");
+  circle(0,0,2000)
+
   fill("#2C96BF");
   circle(0,0,1350)
  
@@ -63,8 +66,10 @@ function shark(x, y, animation, pScope){
 
 function bubbles(x, y, animation, pScope){
   
-  fill(255,255,255,100);  
-  circle(0,300+animation.wave()*5,20);
+  fill(255,255,255, 150-(animation.frame*150));  
+  circle((animation.frame*5)*(animation.wave(4)*20),0,40);
+  
+  
 
 }
 
