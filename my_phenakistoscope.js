@@ -1,7 +1,7 @@
 const SLICE_COUNT = 12;
 
 function setup_pScope(pScope){
-  pScope.output_mode(ANIMATED_DISK);
+  pScope.output_mode(STATIC_DISK);
   pScope.scale_for_screen(true);
   pScope.draw_layer_boundaries(true);
   pScope.set_direction(CCW);
@@ -17,7 +17,7 @@ function setup_layers(pScope){
   new PLayer(null, "#43BDD9");  //lets us draw the whole circle background, ignoring the boundaries
 
   
-  var layer1 = new PLayer(squares);
+  var layer1 = new PLayer(bg);
   layer1.mode( RING );
   layer1.set_boundary( 250, 1000 );
 
@@ -25,24 +25,30 @@ function setup_layers(pScope){
   layer2.mode( RING );
   layer2.set_boundary( 250, 1000 );
 
-  var layer4 = new PLayer(bubbles);
-  layer4.mode( SWIRL(3) );
+  var layer4 = new PLayer(bubbles1);
+  layer4.mode( RING );
   layer4.set_boundary( 0, 1250 );
+  
+  var layer5 = new PLayer(bubbles2);
+  layer5.mode( RING );
+  layer5.set_boundary( 0, 1250 );
 
-  var layer3 = new PLayer(sign);
-  layer3.mode( RING );
-  layer3.set_boundary( 0, 1250 );
+  //var layer3 = new PLayer(sign);
+  //layer3.mode( RING );
+  //layer3.set_boundary( 0, 1250 );
 
   
   
 }
-function squares(x, y, animation, pScope){
+function bg(x, y, animation, pScope){
 
   // this is how you set up a background for a specific layer
   let angleOffset = (360 / SLICE_COUNT) / 2
   let backgroundArcStart = 270 - angleOffset;
   let backgroundArcEnd = 270 + angleOffset;
 
+
+  
   fill("#43BDD9");
   circle(0,0,2000)
 
@@ -64,23 +70,32 @@ function shark(x, y, animation, pScope){
 
 }
 
-function bubbles(x, y, animation, pScope){
+function bubbles1(x, y, animation, pScope){
   
-  fill(255,255,255, 150-(animation.frame*150));  
-  circle((animation.frame*5)*(animation.wave(4)*20),0,40);
+  fill(255,255,255, 100-(animation.frame*150));  
+  circle((animation.frame*6)*(animation.wave(4)*40),(animation.frame*2000)-300,50-animation.frame*50);
+
+  //50 to 0
   
   
 
 }
 
-function sign(x, y, animation, pScope){
+function bubbles2(x, y, animation, pScope){
+  
+  fill(255,255,255, 100-(animation.frame*150));  
+  circle((animation.frame*6)*(animation.wave(4)*40),(animation.frame*2000)+300,50-animation.frame*50);
 
-  scale(0.5);
-  drawingContext.shadowBlur = 100;
-  drawingContext.shadowColor = 'black';
-
-
-  if (animation.frame < 0.08){
-  pScope.draw_image("warning_sign",0,0);
-  }
 }
+
+//function sign(x, y, animation, pScope){
+
+  //scale(0.5);
+  //drawingContext.shadowBlur = 100;
+  //drawingContext.shadowColor = 'black';
+
+
+  //if (animation.frame < 0.08){
+  //pScope.draw_image("warning_sign",0,0);
+ // }
+//}
